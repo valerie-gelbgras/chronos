@@ -1,0 +1,4 @@
+upgrade pip
+dash 
+pandas
+dash_bootstrap_components

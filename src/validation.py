@@ -1,3 +1,5 @@
+# Copyright (C) 2022 Valerie GELBGRAS vgelbgra@gmail.com
+
 import functools
 
 

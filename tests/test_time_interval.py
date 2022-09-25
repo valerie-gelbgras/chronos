@@ -1,8 +1,7 @@
 # Copyright (C) 2022 Valerie GELBGRAS vgelbgra@gmail.com
 
 import pytest
-
-from src.time_interval import TimeInterval
+from src.chronos.time_interval import TimeInterval
 
 def test_initialization():
     time_interval = TimeInterval(hours=1, minutes=2, seconds=3, milliseconds=4)

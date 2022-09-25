@@ -1,6 +1,6 @@
 # Copyright (C) 2022 Valerie GELBGRAS vgelbgra@gmail.com
 
-from dash import dash, html
+from dash import html
 import dash_bootstrap_components as dbc
 
 from .buttons import get_start_stop_button, get_reset_button

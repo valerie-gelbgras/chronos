@@ -2,10 +2,8 @@
 
 from dash import dash, html, Input, Output, State, callback_context
 import dash_bootstrap_components as dbc
-try:
-    from chronos_app import app
-except:
-    from src.chronos.chronos_app import app
+
+from chronos_app import app
 from . import ids
 from . import styles
 from .state_color import StateColor

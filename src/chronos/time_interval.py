@@ -1,8 +1,6 @@
 # Copyright (C) 2022 Valerie GELBGRAS vgelbgra@gmail.com
-try:
-    import validation
-except:
-    from . import validation
+
+import validation
 
 
 class TimeInterval:

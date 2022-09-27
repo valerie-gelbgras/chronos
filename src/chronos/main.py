@@ -1,11 +1,7 @@
 # Copyright (C) 2022 Valerie GELBGRAS vgelbgra@gmail.com
 
 
-try:
-    from chronos_app import app
-except:
-    print("test")
-
+from chronos_app import app
 from components.layout import get_layout
 
 

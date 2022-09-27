@@ -6,6 +6,7 @@ import pytest
 
 from src.chronos.components import buttons
 
+
 @pytest.mark.parametrize("button_id, n_clicks_start, n_clicks_reset, start_button_state, expected", 
     [("start-button", 0, 0, '', ('START', 'success', True, no_update)),
      ("start-button", 1, 0, 'START', ('PAUSE', 'danger', False, no_update)),

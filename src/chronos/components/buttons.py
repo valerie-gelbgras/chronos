@@ -10,15 +10,15 @@ from .state_color import StateColor
 
 
 def get_start_stop_button():
-    return html.Div([dbc.Button(StateColor.PAUSE.name, id=ids.START_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.START.value)])
+    return html.Div([dbc.Button(StateColor.PAUSE.state, id=ids.START_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.START.color)])
 
 
 def get_reset_button():
-    return html.Div([dbc.Button(StateColor.RESET.name, id=ids.RESET_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.RESET.value)])
+    return html.Div([dbc.Button(StateColor.RESET.state, id=ids.RESET_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.RESET.color)])
 
 
 def get_laps_button():
-    return html.Div([dbc.Button(StateColor.LAPS.name, id=ids.LAPS_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.LAPS.value)])
+    return html.Div([dbc.Button(StateColor.LAPS.state, id=ids.LAPS_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.LAPS.color)])
 
 
 @app.callback(
@@ -39,13 +39,13 @@ def update(n_clicks_start, n_click_reset, start_button_status):
 
 
 def update_when_start_button_is_clicked(start_button_status):
-    if start_button_status == StateColor.START.name:
-        return StateColor.PAUSE.name, StateColor.PAUSE.value, False, dash.no_update
-    return StateColor.START.name, StateColor.START.value, True, dash.no_update
+    if start_button_status == StateColor.START.state:
+        return StateColor.PAUSE.state, StateColor.PAUSE.color, False, dash.no_update
+    return StateColor.START.state, StateColor.START.color, True, dash.no_update
 
 
 def update_when_reset_button_is_clicked():
-    return StateColor.START.name, StateColor.START.value, True, 0
+    return StateColor.START.name, StateColor.START.color, True, 0
 
 
 # @app.callback(

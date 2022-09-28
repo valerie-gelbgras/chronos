@@ -9,6 +9,10 @@ class StateColor(Enum):
     RESET = 'primary'
     LAPS = 'info'
 
-    # @property
-    # def state(self):
-    #     return
+    @property
+    def state(self):
+        return self.name
+    
+    @property
+    def color(self):
+        return self.value

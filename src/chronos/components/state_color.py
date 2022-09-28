@@ -7,7 +7,7 @@ class StateColor(Enum):
     START = 'success'
     PAUSE = 'danger'
     RESET = 'primary'
-    LAPS = 'info'
+    LAP = 'info'
 
     @property
     def state(self):

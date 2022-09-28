@@ -18,7 +18,7 @@ def get_reset_button():
 
 
 def get_laps_button():
-    return html.Div([dbc.Button(StateColor.LAPS.state, id=ids.LAPS_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.LAPS.color)])
+    return html.Div([dbc.Button(StateColor.LAP.state, id=ids.LAPS_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.LAP.color)])
 
 
 @app.callback(

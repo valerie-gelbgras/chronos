@@ -9,7 +9,7 @@ from .fields import get_timer_field
 body = dbc.Container(
     [
         dbc.Row([
-                dbc.Col(get_start_stop_button()), 
+            dbc.Col(get_start_stop_button()), 
                 dbc.Col(get_timer_field()),
                 dbc.Col([
                     get_reset_button(),

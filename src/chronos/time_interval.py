@@ -1,6 +1,6 @@
 # Copyright (C) 2022 Valerie GELBGRAS vgelbgra@gmail.com
 
-from . import validation
+from src.chronos import validation
 
 
 class TimeInterval:

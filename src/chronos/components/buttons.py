@@ -43,6 +43,8 @@ def update(n_clicks_start, n_clicks_reset, n_clicks_lap, start_button_state, tab
     elif not user_click or user_click == ids.RESET_BUTTON:
         return update_when_reset_button_is_clicked()
     elif user_click == ids.LAP_BUTTON:
+        if start_button_state !=  StateColor.PAUSE.state:
+            return dash.no_update, dash.no_update, dash.no_update, dash.no_update, dash.no_update, n_clicks_lap - 1
         new_table = update_table(n_clicks_lap, table_state, timer_state)
         return dash.no_update, dash.no_update, dash.no_update, dash.no_update, new_table, dash.no_update
 

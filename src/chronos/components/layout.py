@@ -13,7 +13,7 @@ body = dbc.Container(
             [
                 dbc.Row(
                     [
-                        dbc.Col(get_start_stop_button()), 
+                        dbc.Col(get_start_stop_button()),
                         dbc.Col(get_timer_field()),
                         dbc.Col(
                             [
@@ -21,7 +21,7 @@ body = dbc.Container(
                                 html.Br(),
                                 get_laps_button()
                             ])
-                    ], 
+                    ],
                     justify="center",
                     align="top",
                     class_name="h-100"),

@@ -32,18 +32,18 @@ def get_laps_button():
     [Input(ids.START_BUTTON, 'n_clicks'),
      Input(ids.RESET_BUTTON, 'n_clicks'),
      Input(ids.LAP_BUTTON, 'n_clicks')],
-     [State(ids.START_BUTTON, 'children'),
-      State(ids.LAPS_TABLE, 'children'),
-      State(ids.TIMER_DISPLAY, 'children')]
+    [State(ids.START_BUTTON, 'children'),
+     State(ids.LAPS_TABLE, 'children'),
+     State(ids.TIMER_DISPLAY, 'children')]
 )
-def update(n_clicks_start, n_click_reset, n_click_lap, start_button_state, table_state, timer_state):
+def update(n_clicks_start, n_clicks_reset, n_clicks_lap, start_button_state, table_state, timer_state):
     user_click = callback_context.triggered[0]['prop_id'].split('.')[0]
     if user_click == ids.START_BUTTON:
         return update_when_start_button_is_clicked(start_button_state)
     elif not user_click or user_click == ids.RESET_BUTTON:
         return update_when_reset_button_is_clicked()
-    elif user_click== ids.LAP_BUTTON:
-        new_table = update_table(n_click_lap, table_state, timer_state)
+    elif user_click == ids.LAP_BUTTON:
+        new_table = update_table(n_clicks_lap, table_state, timer_state)
         return dash.no_update, dash.no_update, dash.no_update, dash.no_update, new_table, dash.no_update
 
 

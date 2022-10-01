@@ -12,7 +12,7 @@ class StateColor(Enum):
     @property
     def state(self):
         return self.name
-    
+
     @property
     def color(self):
         return self.value

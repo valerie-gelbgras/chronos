@@ -3,6 +3,7 @@
 import pytest
 from src.chronos.time_interval import TimeInterval
 
+
 def test_initialization():
     time_interval = TimeInterval(hours=1, minutes=2, seconds=3, milliseconds=4)
     assert time_interval.hours == 1
@@ -14,7 +15,7 @@ def test_initialization():
 def test_negative_hours_must_be_given_as_integer():
     with pytest.raises(TypeError):
         TimeInterval(hours=1.1, minutes=2, seconds=3, milliseconds=4)
-        
+
 
 def test_negative_minutes_must_be_given_as_integer():
     with pytest.raises(TypeError):
@@ -59,8 +60,8 @@ def test_substraction_basic():
     assert difference.minutes == 3
     assert difference.seconds == 34
     assert difference.milliseconds == 10
-    
-    
+
+
 def test_substraction_advanced():
     t1 = TimeInterval(hours=3, minutes=5, seconds=37, milliseconds=40)
     t2 = TimeInterval(hours=1, minutes=29, seconds=43, milliseconds=50)
@@ -69,14 +70,14 @@ def test_substraction_advanced():
     assert difference.minutes == 35
     assert difference.seconds == 53
     assert difference.milliseconds == 990
-    
+
 
 def test_string_representation():
     t1 = TimeInterval(hours=3, minutes=55, seconds=31, milliseconds=50)
     assert str(t1) == '03:55:31.050'
-    
+
     t2 = TimeInterval(hours=13, minutes=5, seconds=31, milliseconds=980)
     assert str(t2) == '13:05:31.980'
-    
+
     t3 = TimeInterval(hours=3, minutes=55, seconds=1, milliseconds=5)
     assert str(t3) == '03:55:01.005'

@@ -7,6 +7,7 @@ from chronos_app import app
 from . import ids
 from . import styles
 from .state_color import StateColor
+from .tables import get_laps_table_header, get_new_lap_row
 
 
 def get_start_stop_button():
@@ -18,48 +19,47 @@ def get_reset_button():
 
 
 def get_laps_button():
-    return html.Div([dbc.Button(StateColor.LAP.state, id=ids.LAPS_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.LAP.color)])
+    return html.Div([dbc.Button(StateColor.LAP.state, id=ids.LAP_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.LAP.color)])
 
 
 @app.callback(
     [Output(ids.START_BUTTON, 'children'),
      Output(ids.START_BUTTON, 'color'),
      Output(ids.INTERVAL, 'disabled'),
-     Output(ids.INTERVAL, 'n_intervals')],
+     Output(ids.INTERVAL, 'n_intervals'),
+     Output(ids.LAPS_TABLE, 'children'),
+     Output(ids.LAP_BUTTON, 'n_clicks')],
     [Input(ids.START_BUTTON, 'n_clicks'),
-     Input(ids.RESET_BUTTON, 'n_clicks')],
-     State(ids.START_BUTTON, 'children')
+     Input(ids.RESET_BUTTON, 'n_clicks'),
+     Input(ids.LAP_BUTTON, 'n_clicks')],
+     [State(ids.START_BUTTON, 'children'),
+      State(ids.LAPS_TABLE, 'children'),
+      State(ids.TIMER_DISPLAY, 'children')]
 )
-def update(n_clicks_start, n_click_reset, start_button_status):
+def update(n_clicks_start, n_click_reset, n_click_lap, start_button_state, table_state, timer_state):
     user_click = callback_context.triggered[0]['prop_id'].split('.')[0]
     if user_click == ids.START_BUTTON:
-        return update_when_start_button_is_clicked(start_button_status)
-    elif not user_click or user_click == ids.RESET_BUTTON or user_click== ids.LAPS_BUTTON:
+        return update_when_start_button_is_clicked(start_button_state)
+    elif not user_click or user_click == ids.RESET_BUTTON:
         return update_when_reset_button_is_clicked()
+    elif user_click== ids.LAP_BUTTON:
+        new_table = update_table(n_click_lap, table_state, timer_state)
+        return dash.no_update, dash.no_update, dash.no_update, dash.no_update, new_table, dash.no_update
 
 
 def update_when_start_button_is_clicked(start_button_status):
     if start_button_status == StateColor.START.state:
-        return StateColor.PAUSE.state, StateColor.PAUSE.color, False, dash.no_update
-    return StateColor.START.state, StateColor.START.color, True, dash.no_update
+        return StateColor.PAUSE.state, StateColor.PAUSE.color, False, dash.no_update, dash.no_update, dash.no_update
+    return StateColor.START.state, StateColor.START.color, True, dash.no_update, dash.no_update, dash.no_update
 
 
 def update_when_reset_button_is_clicked():
-    return StateColor.START.name, StateColor.START.color, True, 0
+    return StateColor.START.name, StateColor.START.color, True, 0, [], 0
 
 
-# @app.callback(
-#     [Output(ids.START_BUTTON, 'children'),
-#      Output(ids.START_BUTTON, 'color'),
-#      Output(ids.INTERVAL, 'disabled'),
-#      Output(ids.INTERVAL, 'n_intervals')],
-#     [Input(ids.START_BUTTON, 'n_clicks'),
-#      Input(ids.RESET_BUTTON, 'n_clicks')],
-#      State(ids.LAPS_TABLE, 'children')
-# )
-# def update(n_clicks_start, n_click_reset, start_button_status):
-#     user_click = callback_context.triggered[0]['prop_id'].split('.')[0]
-#     if user_click == ids.START_BUTTON:
-#         return update_when_start_button_is_clicked(start_button_status)
-#     elif not user_click or user_click == ids.RESET_BUTTON or user_click== ids.LAPS_BUTTON:
-#         return update_when_reset_button_is_clicked()
+def update_table(n_clicks_laps, previous_table_data, time):
+    if n_clicks_laps == 0:
+        return []
+    if previous_table_data == []:
+        return get_laps_table_header() + get_new_lap_row(n_clicks_laps, time)
+    return previous_table_data + get_new_lap_row(n_clicks_laps, time)

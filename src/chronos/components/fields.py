@@ -11,7 +11,7 @@ from time_interval import TimeInterval
 
 def get_timer_field():
     return html.Div([
-                    dbc.Alert(id=ids.TIMER_DISPLAY, color="light", style=styles.BUTTON_SIZE),
+                    dbc.Button(id=ids.TIMER_DISPLAY, color="light", style=styles.BUTTON),
                     dcc.Interval(id=ids.INTERVAL, interval=50, n_intervals=0)
                     ])
 

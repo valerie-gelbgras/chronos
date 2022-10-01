@@ -11,15 +11,15 @@ from .tables import get_laps_table_header, get_new_lap_row
 
 
 def get_start_stop_button():
-    return html.Div([dbc.Button(StateColor.PAUSE.state, id=ids.START_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.START.color)])
+    return html.Div([dbc.Button(StateColor.PAUSE.state, id=ids.START_BUTTON, n_clicks=0, style=styles.BUTTON, color=StateColor.START.color)])
 
 
 def get_reset_button():
-    return html.Div([dbc.Button(StateColor.RESET.state, id=ids.RESET_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.RESET.color)])
+    return html.Div([dbc.Button(StateColor.RESET.state, id=ids.RESET_BUTTON, n_clicks=0, style=styles.BUTTON, color=StateColor.RESET.color)])
 
 
 def get_laps_button():
-    return html.Div([dbc.Button(StateColor.LAP.state, id=ids.LAP_BUTTON, n_clicks=0, style=styles.BUTTON_SIZE, color=StateColor.LAP.color)])
+    return html.Div([dbc.Button(StateColor.LAP.state, id=ids.LAP_BUTTON, n_clicks=0, style=styles.BUTTON, color=StateColor.LAP.color)])
 
 
 @app.callback(

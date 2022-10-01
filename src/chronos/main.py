@@ -7,4 +7,5 @@ from components.layout import get_layout
 
 if __name__ == '__main__':
     app.layout = get_layout()
+    app.title = 'Χρόνος'
     app.run_server(debug=True)
